@@ -1,0 +1,12 @@
+deepgram-sdk 
+sounddevice 
+websockets
+python-dotenv
+numpy
+aiohttp
+aiortc
+asyncio
+scipy
+fastapi 
+uvicorn 
+av
