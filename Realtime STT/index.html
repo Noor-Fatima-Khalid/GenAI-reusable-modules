@@ -1,0 +1,68 @@
+<!-- a dummy html page with Join Meeting button. -->
+<!-- creates offer and sends it to backend. While integrating this to a project, you will need to include cors in the backend too.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Interview</title>
+</head>
+<body>
+  <h1>AI Interview Room</h1>
+  <button id="joinBtn">Join Meeting</button>
+
+  <script>
+    const joinBtn = document.getElementById("joinBtn");
+    let pc;
+
+    joinBtn.onclick = async () => {
+      joinBtn.disabled = true;
+      joinBtn.innerText = "Connecting...";
+
+      console.log("[UI] Join Meeting clicked");
+
+      // 1. Get microphone access
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      console.log("[WebRTC] Microphone access granted");
+
+      // 2. Create PeerConnection
+      pc = new RTCPeerConnection();
+
+      // Debugging
+      pc.oniceconnectionstatechange = () => {
+        console.log("[WebRTC] ICE state:", pc.iceConnectionState);
+      };
+
+      // 3. Add audio track
+      stream.getTracks().forEach(track => pc.addTrack(track, stream));
+
+      // 4. Create offer
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
+
+      console.log("[WebRTC] Offer created");
+
+      // 5. Send offer to backend
+      const response = await fetch("http://localhost:8080/offer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sdp: offer.sdp,
+          type: offer.type
+        })
+      });
+
+
+      const answer = await response.json();
+
+      // 6. Set remote description
+      await pc.setRemoteDescription(
+        new RTCSessionDescription(answer)
+      );
+
+
+      console.log("[WebRTC] Connected to interview server");
+      joinBtn.innerText = "Connected 🎙️";
+    };
+  </script>
+</body>
+</html>
