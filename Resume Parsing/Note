@@ -1,0 +1,2 @@
+Due to some changes in langchain, these versions might not work. The code works but you will have to download compatible versions. 
+Vector dbs and faiss has been moved to langchain-community as of DEcember 2025
