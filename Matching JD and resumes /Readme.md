@@ -6,16 +6,18 @@ personnel can inspect, override, or adjust the automated decisions before procee
 within the recruitment pipeline.
 
 ### System Architecture
-Upload Resumes
-      ↓
-Parse ALL → store parsed JSONs in cache
-      ↓
-Match ALL against JD → update cache
-      ↓
-Show Shortlisted + Rejected to HR
-      ↓
-HR overrides (optional)
-      ↓
-Persist final decisions
-      ↓
-Schedule interviews
+Upload Resumes <br>
+      ↓ <br>
+Parse ALL → store parsed JSONs in cache <br>
+      ↓ <br>
+Match ALL against JD → update cache <br>
+      ↓<br>
+Show Shortlisted + Rejected to HR <br>
+      ↓ <br>
+HR overrides <br>
+      ↓ <br>
+Persist final decisions (store to db at this stage) <br>
+      ↓ <br> 
+Schedule interviews <br>
+
+### This repo contains code till Match ALL against JD → update cache. The parser module is in the other folder in this repo.
