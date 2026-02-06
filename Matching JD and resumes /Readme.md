@@ -5,9 +5,9 @@ personnel can inspect, override, or adjust the automated decisions before procee
 ### System Architecture
 Upload Resumes <br>
       ↓ <br>
-Parse ALL → store parsed JSONs in cache <br>
+Parse <br>
       ↓ <br>
-Match ALL against JD → update cache <br>
+Match against JD → update cache <br>
       ↓<br>
 Show Shortlisted + Rejected to HR <br>
       ↓ <br>
