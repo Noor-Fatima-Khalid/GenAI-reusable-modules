@@ -1,0 +1,1 @@
+This folder should contain the resumes for batch processing. If resumes are located somewhere else, adjust the path in main.py accordingly.
