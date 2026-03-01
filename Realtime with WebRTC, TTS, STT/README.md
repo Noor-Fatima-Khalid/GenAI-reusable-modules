@@ -84,8 +84,3 @@ Backend:
 - Resample once, then stream at a fixed clock
 - Use silence to handle temporary queue gaps
 
----
-
-### Summary
-
-ElevenLabs audio (24 kHz) is resampled to WebRTC’s native 48 kHz and streamed as precisely timed 20 ms frames (960 samples) to ensure correct speed, natural pitch, and stable real-time playback.
